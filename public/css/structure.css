@@ -81,3 +81,26 @@ a  {
 .traitVertical {
   border-left: 1px white solid;
 }
+
+
+.photoStar {
+    text-align: center;
+    display: block;
+    float: left;
+    width: 25%;
+}
+
+.photoStar img{
+    max-width: 30%;
+}
+
+#choixLettre{
+    text-align: center;
+    margin: 2%;
+}
+
+#choixLettreDetails{
+    float: right;
+}
+
+

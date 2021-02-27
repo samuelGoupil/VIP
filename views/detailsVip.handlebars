@@ -1,0 +1,20 @@
+<div id="choixLettreDetails">
+  cliquez sur une lettre :
+
+{{#each listeLettre}}
+
+  <a href="repertoire/{{this.FIRSTLETTER}}">  {{this.FIRSTLETTER}}</a>
+
+{{/each}}
+</div>
+
+{{#each details}}
+<div id="details">
+    <p>Nom : {{this.PRENOM}} {{this.NOM}} </p>
+    <p>Date de naissance : {{this.DATE}}</p>
+</div>
+{{/each}}
+
+{{#each data}}
+<img src="/images/vip/{{this.PHOTO}}" alt="">
+{{/each}}
