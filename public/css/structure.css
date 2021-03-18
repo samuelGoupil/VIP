@@ -101,6 +101,19 @@ a  {
 
 #choixLettreDetails{
     float: right;
+    margin-top: 0px;
+    margin-bottom: 2%;
 }
 
+#details{
+    text-align: left;
+    margin-left: 2%;
+}
 
+#allphotos{
+    float: none;
+}
+
+.page{
+    border: solid;
+}
