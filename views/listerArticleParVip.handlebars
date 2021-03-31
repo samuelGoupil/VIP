@@ -1,0 +1,16 @@
+<div class="tabarticle">
+<table class="tab">
+    <th>Article {{DetailsVipArticle.Prenom_Star}} {{DetailsVipArticle.Nom_Star}} <a  href="/repertoire/DetailsVip/{{DetailsVipArticle.Num_Star}}">Voir sa fiche</a></th>
+    
+    <td>{{ArticleParVip.Resume_Article}}</td>
+</table>
+</div>
+<div class="tablevip">
+    <table class="tab1">
+    <th><h1> VIP </h1></th>
+{{#each Article}}
+<td><a  href="/articles/{{this.Num_Star}}">{{this.Prenom_Star}}   {{this.Nom_Star}}</a></td>
+{{/each}}
+</table>
+
+</div>

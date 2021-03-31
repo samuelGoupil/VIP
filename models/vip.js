@@ -81,10 +81,11 @@ module.exports.photo = function(numvip, callback) {
         }
     });
 };
-module.exports.autresphotos = function(numvip, callback) {
+module.exports.autresphotos = function(vip, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT PHOTO_ADRESSE AS PHOTO FROM PHOTO p JOIN VIP v ON p.VIP_NUMERO=v.VIP_NUMERO AND p.VIP_NUMERO='"+numvip+"%' AND PHOTO_NUMERO!=1;";
+            let sql = "SELECT p.PHOTO_ADRESSE AS PHOTO, p.PHOTO_COMMENTAIRE as PHOTO_COMMENTAIRE FROM PHOTO p JOIN VIP v ON p.VIP_NUMERO=v.VIP_NUMERO where p.VIP_NUMERO like '"+vip+"' AND PHOTO_NUMERO!=1;";
+             console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }
@@ -170,4 +171,54 @@ module.exports.film = function(numvip, callback) {
             connexion.release();
         }
     });
+};
+module.exports.Article = function(callback) {
+    db.getConnection(function(err, connexion) {
+        if (!err) {
+            let sql = "select v.vip_nom as Nom_Star, v.vip_prenom as Prenom_Star, v.vip_numero as Num_Star from apoursujet a inner join vip v ON v.vip_numero =a.vip_numero;";
+            console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+};
+module.exports.ArticleParVip = function(num,callback) {
+db.getConnection(function(err, connexion) {
+    if (!err) {
+        let sql = "SELECT a.article_resume AS Resume_Article, a.article_titre AS Titre_Article FROM apoursujet ap INNER JOIN article a ON a.ARTICLE_NUMERO=ap.ARTICLE_NUMERO WHERE ap.VIP_NUMERO like'"+num+"';";
+        console.log(sql);
+        connexion.query(sql, callback);
+        connexion.release();
+    }
+});
+};
+module.exports.DetailsVipArticle = function(num,callback) {
+db.getConnection(function(err, connexion) {
+    if (!err) {
+        let sql = "SELECT v.vip_nom AS Nom_Star, v.vip_prenom AS Prenom_Star, v.vip_numero as Num_Star FROM vip v WHERE v.vip_numero like'"+num+"';";
+        console.log(sql);
+        connexion.query(sql, callback);
+        connexion.release();
+    }
+});
+};
+module.exports.DateVipArticle = function(num,callback) {
+db.getConnection(function(err, connexion) {
+    if (!err) {
+        let sql = "SELECT e.exemplaire_datepublication AS DATE FROM article a INNER JOIN exemplaire e ON e.exemplaire_numero=a.article_numero INNER JOIN apoursujet ap ON a.article_numero= ap.ARTICLE_NUMERO WHERE ap.vip_numero like'"+num+"';";
+        console.log(sql);
+        connexion.query(sql, callback);
+        connexion.release();
+    }
+});
+};
+module.exports.PhotoVipAlbum = function(callback) {
+db.getConnection(function(err, connexion) {
+    if (!err) {
+        let sql = "SELECT p.PHOTO_ADRESSE AS Photo_Star, p.PHOTO_COMMENTAIRE as Photo_Commentaire, p.PHOTO_SUJET as Photo_Sujet FROM PHOTO p JOIN VIP v ON p.VIP_NUMERO=v.VIP_NUMERO WHERE PHOTO_NUMERO=1 ORDER BY v.vip_nom;";
+         console.log(sql);
+        connexion.query(sql, callback);
+        connexion.release();
+    }
+});
 };

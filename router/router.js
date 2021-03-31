@@ -2,7 +2,7 @@ let HomeController = require('./../controllers/HomeController');
 let VipController = require('./../controllers/VipController');
 let AlbumController = require('./../controllers/AlbumController');
 let TestController = require('./../controllers/TestController');
-
+let ArticleController = require('./../controllers/ArticleController');
 
 
 // Routes
@@ -22,7 +22,10 @@ module.exports = function(app){
     
 
  // albums
-   app.get('/album', AlbumController.ListerAlbum);
+ app.get('/album', AlbumController.ListerAlbum);
+ // RepertoireVip
+ app.get('/articles', ArticleController.Article);
+ app.get('/articles/:num', ArticleController.ArticleParVip);
 
 // tout le reste
     app.get('*', HomeController.NotFound);
