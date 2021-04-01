@@ -119,9 +119,14 @@ a  {
 }
 .tablevip table,th,td {
     float:right;
-    width: 100px;
+    width: 50px;
     font-size: 1em;
     
+}
+
+#tab{
+    margin-left: 30%;
+  
 }
 .tabarticle table,th,td{
     float:left;
